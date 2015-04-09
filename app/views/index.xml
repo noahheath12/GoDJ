@@ -1,0 +1,19 @@
+<Alloy>
+	<TabGroup id='tabGroup'>
+		<!--<Tab id="tabProfile">
+			<Require src="Profile"/>
+	</Tab>-->
+		<Tab id="tabMusic">
+			<Require src="Music"/>
+		</Tab>
+		<Tab id="tabFriends">
+			<Require src="Friends"/>
+		</Tab>
+		<Tab id="tabFriends">
+			<Require src="Photos"/>
+		</Tab>
+		<Tab id="tabFriends">
+			<Require src="Events"/>
+		</Tab>	
+	</TabGroup>
+</Alloy>
