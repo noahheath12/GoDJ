@@ -6,7 +6,7 @@
     <property name="acs-oauth-secret-development" type="string">qr0r55pToqf5BMmpN88Bys0glh15bSir</property>
     <property name="acs-oauth-key-development" type="string">KMJzfPokmHAK0YsCyBpg4Ay7UjPnl6lg</property>
     <property name="acs-api-key-development" type="string">9bRkbwhyYS2JGa2flqjV2EQMLlbd44zh</property>
-    <id>com.noahheath.godj</id>
+    <id>com.cpmobile.noahheath.godj</id>
     <name>GoDJ</name>
     <version>1.0</version>
     <publisher>noahheath</publisher>

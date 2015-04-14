@@ -1,19 +1,39 @@
 <Alloy>
 	<TabGroup id='tabGroup'>
-		<!--<Tab id="tabProfile">
-			<Require src="Profile"/>
-	</Tab>-->
-		<Tab id="tabMusic">
-			<Require src="Music"/>
+		<Tab id="tabProfile" title="Profile">
+			<Window class='container' title='Profile'>
+				<RightNavButton platform="ios">
+					<Button id="cameraButton">Camera</Button>
+				</RightNavButton>
+				<LeftNavButton>
+					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
+				</LeftNavButton>
+				<TableView id="feedTable" ></TableView>
+			</Window>
 		</Tab>
-		<Tab id="tabFriends">
-			<Require src="Friends"/>
+		<Tab id="tabMusic" title="Music">
+			<Window class='container' exitOnClose='true' title='Music'>
+				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
+				<Label>I am Window 1</Label>
+			</Window>
 		</Tab>
-		<Tab id="tabFriends">
-			<Require src="Photos"/>
+		<Tab id="tabFriends" title="Friends">
+			<Window class='container' exitOnClose='true' title='Friends'>
+				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
+				<Label>I am Window 1</Label>
+			</Window>
 		</Tab>
-		<Tab id="tabFriends">
-			<Require src="Events"/>
+		<Tab id="tabPhotos" title="Photos">
+			<Window class='container' exitOnClose='true' title='Photos'>
+				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
+				<Label>I am Window 1</Label>
+			</Window>
+		</Tab>
+		<Tab id="tabEvents" title="Events">
+			<Window class='container' title='Events'>
+				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
+				<Label>I am Window 1</Label>
+			</Window>
 		</Tab>	
 	</TabGroup>
 </Alloy>

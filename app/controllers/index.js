@@ -1,4 +1,55 @@
-Alloy.Globals.tabGroup = $.tabGroup;
+
+OS_IOS && $.cameraButton.addEventListener("click", function(_event){
+	$.cameraButtonClicked(_event);
+});
+//When the camera button is clicked, call photoSource
+$.cameraButtonClicked= function(_event){
+	var photoSource = Titanium.Media.getIsCameraSupported() ?
+//if true, show the camera and open the photo gallery
+	Titanium.Media.showCamera : Titanium.Media.openPhotoGallery;
+	
+	photoSource ({
+	success: function(event) {
+		//call to function to process an image from the photo gallery
+		processImage(event.media, function(photoResp){
+			//
+			var row = Alloy.createController("feedRow", photoResp);
+			//if the length of the length of the table = 0, set the data and append it to the row
+			//feedTable is contained in the TableView tag in feed.xml
+			if($.feedTable.getData().length === 0) {
+				$.feedTable.setData([]);
+				$.feedTable.appendRow(row.getView(), true);
+			}else{
+				$.feedTable.insertRowBefore(0, row.getView(), true);
+			}
+		});
+	},
+	cancel: function() {
+		//called when user cancels taking a picture
+	},
+	error: function(error) {
+		if(error.code == Titanium.Media.NO_CAMERA){
+			alert("Please run this test on device");
+		}else{
+			alert("Unexpected error: " + error.code);
+		}
+	},
+	//do not save to photo gallery. camera currently does not open
+	saveToPhotoGallery: false,
+	allowEditing : true,
+	mediaType: [Ti.Media.MEDIA_TYPE_PHOTO]
+});
+
+function processImage(_mediaObject, _callback){
+	var photoObject = {
+		image: _mediaObject,
+		title: "Sample Photo " + new Date()
+	};
+	_callback(photoObject);
+}
+};
+
+
 // check if there is a user session saved already
 var aUser = Alloy.createModel('User');
 if (aUser.authenticated()) {
@@ -79,9 +130,3 @@ function doLogout() {
 	}
 }
 
-$.index.addEventListener('androidback',function(e){
-    $.index.close();
-
-    // get activity and cleanup
-	$.index.activity.finish();
-});

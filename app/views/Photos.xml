@@ -1,6 +1,0 @@
-<Alloy>
-	<Window class='container' exitOnClose='true' title='Photos'>
-		<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
-		<Label>I am Window 1</Label>
-	</Window>
-</Alloy>

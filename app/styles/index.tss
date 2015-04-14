@@ -1,9 +1,6 @@
 ".container": {
 	backgroundColor:"white"
 }
-"TabGroup": {
-	tabDividerColor: "red",
-}
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,

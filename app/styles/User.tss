@@ -61,7 +61,7 @@ ScrollView: {
 '#accountText':{
 	width : '80%',
 	textAlign : 'center',
-	text: "ACS Starter Application Template",
+	text: "GoDJ",
 	font:{
 		fontSize: '24dp',
 		fontWeight: 'bold'
