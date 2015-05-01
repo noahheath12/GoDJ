@@ -3,6 +3,7 @@
 		<ScrollView>
 			<View id='loginAcctView'  class='inputView visible'>
 				<Label id='accountText'></Label>
+				<ImageView id='appImage'></ImageView>
 				<View id="cavContainer" >
 					<TextField id="login_email" class='tfWrapper' />
 					<TextField id="login_password" class='tfWrapper' />

@@ -9,6 +9,9 @@
 	border: 1,
 	borderColor: 'gray'
 },
+"ImageView":{
+	top: '30dp'
+},
 '.centerHelper': {
 	top: '10dp',
 	height: Ti.UI.SIZE,
@@ -36,6 +39,10 @@ TextField: {
 	top: '6dp',
 	width: '120dp',
 	height: '36dp',
+	borderRadius: '4dp',
+	borderColor: 'black',
+	right: '15dp',
+	backgroundColor: 'red',
 	font:{
 		fontSize: '13dp'
 	}
@@ -75,7 +82,8 @@ ScrollView: {
 	hintText: 'password'
 },
 '#cavContainer': {
-	top: '20dp',
+	top: '50dp',
+	left: '10dp',
 	width: '280dp',
 	height: Ti.UI.SIZE,
 	layout: 'vertical'

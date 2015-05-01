@@ -1,11 +1,12 @@
 'View' : {
     layout : 'horizontal',  
     width : Ti.UI.FILL,
-    height : Ti.UI.SIZE,
+    height : Titanium.UI.SIZE,
+    backgroundColor: 'red'
 },
 'Window' : {
   layout : 'vertical',
-  backgroundColor: 'white',
+  backgroundColor: '#FFFFFF',
   height : Ti.UI.FILL
 },
 'Label' : {
@@ -18,8 +19,9 @@
   bottom: '10dp'
 },
 '#image' : {
-    top : '13dp',
-    left : '120dp',
+    top : '6dp',
+    bottom: '6dp',
+    left : '50dp',
     width : '150dp',
     height :'150dp',
     borderColor : 'black',
@@ -39,22 +41,7 @@
 	width: Ti.UI.SIZE,
 	layout: 'horizontal'
 },
-ScrollView: {
-	contentHeight: Ti.UI.SIZE,
-	contentWidth: Ti.UI.SIZE
-},
-TextField: {
-	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
-	borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
-	autocorrect: false,
-	top: '2dp',
-	left: '4dp',
-	bottom: '2dp',
-	right: '4dp',
-	paddingLeft: '4dp',
-	backgroundColor: 'white',
-	color: 'black'
-},
+
 // Default Button Style
 "Button": {
 	top: '6dp',
@@ -109,9 +96,6 @@ ScrollView: {
 },
 '#event_details': {
 	hintText: 'Describe the Event...'
-},
-'#event_time': {
-	hintText: 'Time of Event'
 },
 '#doCancelBtn': {
 	left: '10dp'

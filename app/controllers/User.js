@@ -4,6 +4,8 @@ var callback = args.callback;
 /**
  *
  */
+$.appImage.image = '/turntable.png';
+
 function handleLoginClick(_event) {
 
 	Ti.API.debug('clicked: ' + _event.source.id);

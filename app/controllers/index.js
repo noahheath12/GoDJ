@@ -197,10 +197,8 @@ function loadProfileInformation() {
    var userID = Alloy.Globals.CURRENT_USER.attributes.id;
    console.log(userID);
    var param = {
-   		attributes: {
-   			where: JSON.stringify({
-   				"user_id" : userID
-   			})
+   		where: {
+   				'user_id': userID	
    		},
    		order: "-created_at",
    };
@@ -212,7 +210,7 @@ function loadProfileInformation() {
    		console.log(JSON.stringify(model));
    		//console.log(JSON.stringify(photoId));
    		if(userID != model.attributes.user_id){
-   			$.image.image = 
+   			$.image.image = '/missing.gif';
    		}
    		else{
    			myPhoto.showPhoto(photoId).then(function(_model){

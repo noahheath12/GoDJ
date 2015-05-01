@@ -8,12 +8,10 @@
 				<LeftNavButton>
 					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
 				</LeftNavButton>
-				<ScrollView>
 					<View id='header'>
                 		<ImageView id='image' onClick="loadProfileInformation"></ImageView> 
+                		<Button id="refreshBtn">Refesh</Button>
             		</View>
-				</ScrollView>
-				
 			</Window>
 		</Tab>
 		<Tab id="tabEvents" title="Events">
