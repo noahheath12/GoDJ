@@ -63,7 +63,6 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 });
 
 
-
 OS_IOS && $.cameraButton.addEventListener("click", function(_event){
 	$.cameraButtonClicked(_event);
 });
@@ -104,10 +103,8 @@ function processImage(_mediaObject){
     "photo_sync_sizes[]" : "thumb_100",
     "photo_id": "554255f0c069eb7fa51b455f",
   };
-
   var aPhoto = Alloy.createModel('Photo', params);
-  aPhoto.createPhoto(params).then(function(_model){
-  });
+  aPhoto.save();
 }
 };
 
@@ -194,30 +191,13 @@ function doLogout() {
 }
 
 function loadProfileInformation() {
+   var photoId;
    var Cloud = require('ti.cloud');
-   var myPhoto;
+   var myPhoto = Alloy.createModel('Photo');
+   myPhoto.showPhoto(photoId).then(function(model){
+   		$.image.image = model.attributes.urls.thumb_100;
+   });
   // get the attributes from the current use
-   Cloud.Photos.query({
-        order: "-created_at"
-    },function (e) {
-        if (e.success) {
-            if (e.photos.length == 0) {
-                // no photos
-                alert('There are no photos');
-            }
-            else {
-                e.photos.forEach(function(item){
-                        myPhoto=item.processed?item.urls.thumb_100:tempPhoto;
-                });
-            }
-        }
-        else {
-            alert(e.message);
-        }
-    });  
-    
-    $.image.image = myPhoto;
-
 }
 
 $.getView().addEventListener("focus", function() {

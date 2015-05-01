@@ -9,7 +9,8 @@
 					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
 				</LeftNavButton>
 				<View id='header'>
-                	<ImageView id='image'></ImageView>
+                	<ImageView id='image' onClick="loadProfileInformation"></ImageView>
+                	 
             	</View>
 			</Window>
 		</Tab>
