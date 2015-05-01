@@ -34,8 +34,28 @@ exports.definition = {
 			return deferred.promise;
 		}
 		
+		function getPhoto(_photoInfo) {
+			var cloud = this.config.Cloud;
+			var TAP = Ti.App.Properties;
+
+			var deferred = Q.defer();
+
+			cloud.Photos.query(_photoInfo, function(e) {
+				if (e.success) {
+						var photo = e.photos[0];
+						var newModel = new model(photo);
+						deferred.resolve(newModel);
+					
+				} else{
+					deferred.reject(e);
+				}
+			});
+			return deferred.promise;
+		}
+		
 		_.extend(Model.prototype, {
-			showPhoto: showPhoto
+			showPhoto: showPhoto,
+			getPhoto: getPhoto
 		});
 		return Model;
 	},

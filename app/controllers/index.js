@@ -194,9 +194,20 @@ function loadProfileInformation() {
    var photoId;
    var Cloud = require('ti.cloud');
    var myPhoto = Alloy.createModel('Photo');
-   myPhoto.showPhoto(photoId).then(function(model){
-   		$.image.image = model.attributes.urls.thumb_100;
-   });
+   var param = {
+   		order: "-created_at"
+   };
+   myPhoto.getPhoto(param).then(function(model){
+   		photoId = model.attributes.id;
+   		console.log(JSON.stringify(model));
+   		//console.log(JSON.stringify(photoId));
+   		myPhoto.showPhoto(photoId).then(function(_model){
+   			console.log(JSON.stringify(_model));
+   			$.image.image = _model.attributes.urls.thumb_100;
+   		});
+  });
+   
+   
   // get the attributes from the current use
 }
 
