@@ -8,31 +8,33 @@
 				<LeftNavButton>
 					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
 				</LeftNavButton>
-				<TableView id="feedTable" ></TableView>
-			</Window>
-		</Tab>
-		<Tab id="tabMusic" title="Music">
-			<Window class='container' exitOnClose='true' title='Music'>
-				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
-				<Label>I am Window 1</Label>
-			</Window>
-		</Tab>
-		<Tab id="tabFriends" title="Friends">
-			<Window class='container' exitOnClose='true' title='Friends'>
-				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
-				<Label>I am Window 1</Label>
-			</Window>
-		</Tab>
-		<Tab id="tabPhotos" title="Photos">
-			<Window class='container' exitOnClose='true' title='Photos'>
-				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
-				<Label>I am Window 1</Label>
+				<View id='header'>
+                	<ImageView id='image'></ImageView>
+            	</View>
 			</Window>
 		</Tab>
 		<Tab id="tabEvents" title="Events">
 			<Window class='container' title='Events'>
-				<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
-				<Label>I am Window 1</Label>
+				<LeftNavButton>
+					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
+				</LeftNavButton>
+				<RightNavButton>
+					<Button id='addEventsButton' top ="50dp">Add Event</Button>
+				</RightNavButton>
+				<ScrollView>
+				<TableView id="myEvents"></TableView>
+				<View id='createEventView' class='inputView not-visible' top='500dp'>
+					<Label id='eventText'></Label>
+					<View id="cavContainer" >
+						<TextField id="event_name" class='tfWrapper' />
+						<TextField id="event_details" class='tfWrapper' />
+						<View class="centerHelper" >
+							<Button id="doCreateEventBtn" title="Create Event"/>
+							<Button id="doCancelBtn" title="Cancel"/>
+						</View>
+					</View>
+				</View>
+				</ScrollView>
 			</Window>
 		</Tab>	
 	</TabGroup>

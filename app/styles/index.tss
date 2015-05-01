@@ -1,14 +1,127 @@
-".container": {
-	backgroundColor:"white"
+'View' : {
+    layout : 'horizontal',  
+    width : Ti.UI.FILL,
+    height : Ti.UI.SIZE,
+},
+'Window' : {
+  layout : 'vertical',
+  backgroundColor: 'white',
+  height : Ti.UI.FILL
+},
+'Label' : {
+  color : '#444'
 }
-"Label": {
+'#header' : {
+    horizontalWrap : false
+},
+'#logoutBtn' : {
+  bottom: '10dp'
+},
+'#image' : {
+    top : '13dp',
+    left : '120dp',
+    width : '150dp',
+    height :'150dp',
+    borderColor : 'black',
+    border : '1dp'
+},
+
+'.tfWrapper': {
+	top: '6dp',
+	width: '260dp',
+	height: '40dp',
+	border: 1,
+	borderColor: 'gray'
+},
+'.centerHelper': {
+	top: '10dp',
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	layout: 'horizontal'
+},
+ScrollView: {
+	contentHeight: Ti.UI.SIZE,
+	contentWidth: Ti.UI.SIZE
+},
+TextField: {
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+	autocorrect: false,
+	top: '2dp',
+	left: '4dp',
+	bottom: '2dp',
+	right: '4dp',
+	paddingLeft: '4dp',
+	backgroundColor: 'white',
+	color: 'black'
+},
+// Default Button Style
+"Button": {
+	top: '6dp',
+	width: '120dp',
+	height: '36dp',
+	font:{
+		fontSize: '13dp'
+	}
+},
+ScrollView: {
+   contentHeight: Ti.UI.SIZE,
+   contentWidth: Ti.UI.SIZE
+},
+'.visible' : {
+	opacity: 1,	
+}
+'.not-visible' : {
+	opacity: 0,	
+	top : '500dp'
+}
+'.inputView': {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	color: "#000"
-}
-
-"#label": {
-	font: {
-		fontSize: 12
+	top: '40dp',
+	layout: 'vertical',
+	backgroundColor: 'transparent'
+},
+'#eventText':{
+	width : '80%',
+	textAlign : 'center',
+	text: "Create An Event",
+	font:{
+		fontSize: '24dp',
+		fontWeight: 'bold'
 	}
+},
+'#login_email': {
+	hintText: 'email address'
+},
+'#login_password': {
+	passwordMask: true,
+	hintText: 'password'
+},
+'#cavContainer': {
+	top: '20dp',
+	width: '280dp',
+	height: Ti.UI.SIZE,
+	layout: 'vertical'
+},
+'#event_name': {
+	hintText: 'Name of Event'
+},
+'#event_details': {
+	hintText: 'Describe the Event...'
+},
+'#event_time': {
+	hintText: 'Time of Event'
+},
+'#doCancelBtn': {
+	left: '10dp'
+},
+'#doLoginBtn': {
+	left: '0dp'
+},
+'#doCreateEventBtn': {
+	left: '0dp'
+},
+'#doShowCreateAccountBtn': {
+	left: '0dp'
 }

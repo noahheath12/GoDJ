@@ -1,28 +1,82 @@
+OS_IOS && $.addEventsButton.addEventListener("click", function(_event){
+	Ti.API.debug('clicked: ' + _event.source.id);
+
+	var animation = require('alloy/animation');
+
+	// when move the create account screen into view
+	var moveToTop = Ti.UI.createAnimation({
+		top : '0dp',
+		duration : 1
+	});
+	$.createEventView.animate(moveToTop, function() {
+
+		// now cross fade
+		animation.crossFade($.myEvents, $.createEventView, 500, function() {
+			// when done animating, move the view off screen
+			var moveToBottom = Ti.UI.createAnimation({
+				top : '500dp',
+				duration : 1
+			});
+			$.myEvents.animate(moveToBottom);
+		});
+	});
+});
+
+$.doCancelBtn.addEventListener("click", function(_event) {
+
+	Ti.API.debug('clicked: ' + _event.source.id);
+
+	var animation = require('alloy/animation');
+
+	// when move the login screen into view
+	var moveToTop = Ti.UI.createAnimation({
+		top : '0dp',
+		duration : 1
+	});
+	$.myEvents.animate(moveToTop, function() {
+
+		// now cross fade
+		animation.crossFade($.createEventView, $.myEvents, 500, function() {
+			// when done animating, move the view off screen
+			var moveToBottom = Ti.UI.createAnimation({
+				top : '500dp',
+				duration : 1
+			});
+			$.createEventView.animate(moveToBottom);
+		});
+	});
+});
+
+$.doCreateEventBtn.addEventListener("click", function(_event){
+	var currentTime = new Date();
+	
+	var params = {
+		name: $.event_name.value,
+		start_time: currentTime,
+		duration: 7200,
+		user: Alloy.Globals.CURRENT_USER
+	};
+	var aEvent = Alloy.createModel("Event", params);
+	aEvent.createEvent(params).then(function(_model){
+	});
+	
+});
+
+
 
 OS_IOS && $.cameraButton.addEventListener("click", function(_event){
 	$.cameraButtonClicked(_event);
 });
+
 //When the camera button is clicked, call photoSource
 $.cameraButtonClicked= function(_event){
-	var photoSource = Titanium.Media.getIsCameraSupported() ?
-//if true, show the camera and open the photo gallery
-	Titanium.Media.showCamera : Titanium.Media.openPhotoGallery;
+	var photoSource = Titanium.Media.showCamera;
 	
 	photoSource ({
 	success: function(event) {
 		//call to function to process an image from the photo gallery
-		processImage(event.media, function(photoResp){
-			//
-			var row = Alloy.createController("feedRow", photoResp);
-			//if the length of the length of the table = 0, set the data and append it to the row
-			//feedTable is contained in the TableView tag in feed.xml
-			if($.feedTable.getData().length === 0) {
-				$.feedTable.setData([]);
-				$.feedTable.appendRow(row.getView(), true);
-			}else{
-				$.feedTable.insertRowBefore(0, row.getView(), true);
-			}
-		});
+		processImage(event.media);
+		
 	},
 	cancel: function() {
 		//called when user cancels taking a picture
@@ -35,19 +89,28 @@ $.cameraButtonClicked= function(_event){
 		}
 	},
 	//do not save to photo gallery. camera currently does not open
-	saveToPhotoGallery: false,
+	saveToPhotoGallery: true,
 	allowEditing : true,
 	mediaType: [Ti.Media.MEDIA_TYPE_PHOTO]
 });
 
-function processImage(_mediaObject, _callback){
-	var photoObject = {
-		image: _mediaObject,
-		title: "Sample Photo " + new Date()
-	};
-	_callback(photoObject);
+function processImage(_mediaObject){
+  $.currentUserCustomPhoto = _mediaObject;
+  console.log(_mediaObject);
+  var params = {
+  	"photo" : $.currentUserCustomPhoto,
+    "photo_sizes[thumb_100]" : "100x100#",
+    // We need this since we are showing the image immediately
+    "photo_sync_sizes[]" : "thumb_100",
+    "photo_id": "554255f0c069eb7fa51b455f",
+  };
+
+  var aPhoto = Alloy.createModel('Photo', params);
+  aPhoto.createPhoto(params).then(function(_model){
+  });
 }
 };
+
 
 
 // check if there is a user session saved already
@@ -129,4 +192,38 @@ function doLogout() {
 		});
 	}
 }
+
+function loadProfileInformation() {
+   var Cloud = require('ti.cloud');
+   var myPhoto;
+  // get the attributes from the current use
+   Cloud.Photos.query({
+        order: "-created_at"
+    },function (e) {
+        if (e.success) {
+            if (e.photos.length == 0) {
+                // no photos
+                alert('There are no photos');
+            }
+            else {
+                e.photos.forEach(function(item){
+                        myPhoto=item.processed?item.urls.thumb_100:tempPhoto;
+                });
+            }
+        }
+        else {
+            alert(e.message);
+        }
+    });  
+    
+    $.image.image = myPhoto;
+
+}
+
+$.getView().addEventListener("focus", function() {
+  setTimeout(function() {
+    !$.initialized && loadProfileInformation();
+    $.initialized = true;
+  }, 200);
+});
 
