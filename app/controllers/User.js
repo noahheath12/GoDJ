@@ -6,6 +6,7 @@ var callback = args.callback;
  */
 $.appImage.image = '/turntable.png';
 
+
 function handleLoginClick(_event) {
 
 	Ti.API.debug('clicked: ' + _event.source.id);
@@ -62,7 +63,7 @@ function handleCreateAccountClick() {
 	var params = {
 		first_name : $.acct_fname.value,
 		last_name : $.acct_lname.value,
-		username : $.acct_email.value,
+		username : $.acct_username.value,
 		email : $.acct_email.value,
 		password : $.acct_password.value,
 		password_confirmation : $.acct_password_confirmation.value,

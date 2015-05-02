@@ -92,7 +92,7 @@ exports.definition = {
 						var user = e.users[0];
 						TAP.setString("sessionId", e.meta.session_id);
 						TAP.setString("user", JSON.stringify(user));
-
+						alert("Account Created");
 						// set this for ACS to track session connected
 						cloud.sessionId = e.meta.session_id;
 

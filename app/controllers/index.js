@@ -63,6 +63,8 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 });
 
 
+$.descriptionText.text= "My name is DJ 40/40 and I am a college DJ located on Howard University's campus";
+
 OS_IOS && $.cameraButton.addEventListener("click", function(_event){
 	$.cameraButtonClicked(_event);
 });
@@ -202,7 +204,6 @@ function loadProfileInformation() {
    		},
    		order: "-created_at",
    };
-  
   
   
    myPhoto.getPhoto(param).then(function(model){

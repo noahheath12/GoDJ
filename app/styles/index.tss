@@ -2,18 +2,24 @@
     layout : 'horizontal',  
     width : Ti.UI.FILL,
     height : Titanium.UI.SIZE,
-    backgroundColor: 'red'
 },
 'Window' : {
   layout : 'vertical',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: 'red',
   height : Ti.UI.FILL
 },
 'Label' : {
   color : '#444'
 }
 '#header' : {
-    horizontalWrap : false
+    horizontalWrap : false,
+    backgroundColor: 'red',
+    borderColor: 'black'
+},
+'#descriptionView':{
+	layout: 'vertical',
+	top:'5dp',
+	borderColor: 'black'
 },
 '#logoutBtn' : {
   bottom: '10dp'
@@ -21,11 +27,14 @@
 '#image' : {
     top : '6dp',
     bottom: '6dp',
-    left : '50dp',
+    left : '10dp',
     width : '150dp',
     height :'150dp',
     borderColor : 'black',
     border : '1dp'
+},
+'#createEventView':{
+	backgroundColor: 'red'
 },
 
 '.tfWrapper': {
@@ -41,7 +50,9 @@
 	width: Ti.UI.SIZE,
 	layout: 'horizontal'
 },
-
+'#profileAccountView':{
+	borderColor: 'black'
+}
 // Default Button Style
 "Button": {
 	top: '6dp',
@@ -53,7 +64,8 @@
 },
 ScrollView: {
    contentHeight: Ti.UI.SIZE,
-   contentWidth: Ti.UI.SIZE
+   contentWidth: Ti.UI.SIZE,
+   padding: '0dp'
 },
 '.visible' : {
 	opacity: 1,	
@@ -108,4 +120,38 @@ ScrollView: {
 },
 '#doShowCreateAccountBtn': {
 	left: '0dp'
-}
+},
+ScrollView: {
+	contentHeight: Ti.UI.SIZE,
+	contentWidth: Ti.UI.SIZE,
+	backgroundColor: 'red'
+},
+TextField: {
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+	borderStyle: Ti.UI.INPUT_BORDERSTYLE_NONE,
+	autocorrect: false,
+	top: '2dp',
+	left: '4dp',
+	bottom: '2dp',
+	right: '4dp',
+	paddingLeft: '4dp',
+	backgroundColor: 'white',
+	color: 'black'
+},
+'#descriptionTitle':{
+	width : '80%',
+	textAlign : 'center',
+	text: "Description",
+	font:{
+		fontSize: '24dp',
+		fontWeight: 'bold'
+	}
+},
+'#reviewTitle':{
+	textAlign : 'center',
+	text: "Reviews",
+	font:{
+		fontSize: '24dp',
+		fontWeight: 'bold'
+	}
+},

@@ -8,9 +8,19 @@
 				<LeftNavButton>
 					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
 				</LeftNavButton>
-					<View id='header'>
-                		<ImageView id='image' onClick="loadProfileInformation"></ImageView> 
-                		<Button id="refreshBtn">Refesh</Button>
+					<View id='profileAccountView' class='inputView visible'>
+						<View id='header'>
+                			<ImageView id='image' onClick="loadProfileInformation"></ImageView> 
+                			<Button id="refreshBtn">Refesh</Button>
+            			</View>
+            			<Label id='descriptionTitle'></Label>
+            			<View id='descriptionView'>
+            				<Label id='descriptionText'></Label>
+            			</View>
+            			<Label id='reviewTitle'></Label>
+            			<View id='reviewsView'>
+            				<TableView id='reviewsTable'></TableView>
+            			</View>
             		</View>
 			</Window>
 		</Tab>

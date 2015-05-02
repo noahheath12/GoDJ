@@ -14,14 +14,14 @@
 				</View>
 			</View>
 			<View id='createAcctView' class='inputView not-visible' top='500dp'>
-				<Label id='accountText'></Label>
+				<Label id='createText'></Label>
 				<View id="cavContainer" >
 					<TextField id="acct_fname" class='tfWrapper' />
 					<TextField id="acct_lname" class='tfWrapper' />
 					<TextField id="acct_email" class='tfWrapper' />
 					<TextField id="acct_password" class='tfWrapper' />
-					<TextField id="acct_password_confirmation"
-					class='tfWrapper'/>
+					<TextField id="acct_password_confirmation" class='tfWrapper'/>
+					<TextField id="acct_username" class='tfWrapper'/>
 					<View class="centerHelper" >
 						<Button id="doCreateAccountBtn" title="Create Account" onClick="handleCreateAccountClick"/>
 						<Button id="doCancelBtn" title="Cancel" onClick="handleShowLoginClick"/>

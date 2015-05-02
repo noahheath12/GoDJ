@@ -66,9 +66,20 @@ ScrollView: {
 	backgroundColor: 'transparent'
 },
 '#accountText':{
+	top: '50dp',
 	width : '80%',
 	textAlign : 'center',
 	text: "GoDJ",
+	font:{
+		fontSize: '24dp',
+		fontWeight: 'bold'
+	}
+},
+'#createText':{
+	top: '50dp',
+	width : '80%',
+	textAlign : 'center',
+	text: "Create Account",
 	font:{
 		fontSize: '24dp',
 		fontWeight: 'bold'
@@ -104,6 +115,9 @@ ScrollView: {
 '#acct_password_confirmation': {
 	passwordMask: true,
 	hintText: 'password confirmation'
+},
+'#acct_username':{
+	hintText: 'username'
 },
 '#doCancelBtn': {
 	left: '10dp'
