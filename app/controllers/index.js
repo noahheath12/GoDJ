@@ -62,7 +62,6 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 	
 });
 
-
 $.descriptionText.text= "My name is DJ 40/40 and I am a college DJ located on Howard University's campus";
 
 OS_IOS && $.cameraButton.addEventListener("click", function(_event){
@@ -197,6 +196,8 @@ function loadProfileInformation() {
    var Cloud = require('ti.cloud');
    var myPhoto = Alloy.createModel('Photo');
    var userID = Alloy.Globals.CURRENT_USER.attributes.id;
+   var profile = Alloy.Globals.CURRENT_USER.attributes.username;
+   $.profileName.text = profile.toUpperCase();
    console.log(userID);
    var param = {
    		where: {

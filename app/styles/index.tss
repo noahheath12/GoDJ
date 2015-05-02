@@ -27,7 +27,7 @@
 '#image' : {
     top : '6dp',
     bottom: '6dp',
-    left : '10dp',
+    left: '110dp',
     width : '150dp',
     height :'150dp',
     borderColor : 'black',
@@ -65,7 +65,7 @@
 ScrollView: {
    contentHeight: Ti.UI.SIZE,
    contentWidth: Ti.UI.SIZE,
-   padding: '0dp'
+   borderColor: 'black'
 },
 '.visible' : {
 	opacity: 1,	
@@ -138,6 +138,15 @@ TextField: {
 	backgroundColor: 'white',
 	color: 'black'
 },
+'#profileName':{
+	width : '80%',
+	textAlign : 'center',
+	text: "Description",
+	font:{
+		fontSize: '24dp',
+		fontWeight: 'bold'
+	}
+},
 '#descriptionTitle':{
 	width : '80%',
 	textAlign : 'center',
@@ -148,6 +157,7 @@ TextField: {
 	}
 },
 '#reviewTitle':{
+	width: '80%',
 	textAlign : 'center',
 	text: "Reviews",
 	font:{
