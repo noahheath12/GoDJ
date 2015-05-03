@@ -1,17 +1,22 @@
-'View' : {
+'View': {
     layout : 'horizontal',  
     width : Ti.UI.FILL,
     height : Titanium.UI.SIZE,
 },
-'Window' : {
+'#tabGroup':{
+	tabsBackgroundColor:'yellow',
+	tabDividerWidth: '20%',
+},
+'Window': {
   layout : 'vertical',
   backgroundColor: 'red',
-  height : Ti.UI.FILL
+  height : Ti.UI.FILL,
+  barColor:'yellow'
 },
-'Label' : {
+'Label': {
   color : '#444'
 }
-'#header' : {
+'#header': {
     horizontalWrap : false,
     backgroundColor: 'red',
     borderColor: 'black'
@@ -21,10 +26,10 @@
 	top:'5dp',
 	borderColor: 'black'
 },
-'#logoutBtn' : {
+'#logoutBtn': {
   bottom: '10dp'
 },
-'#image' : {
+'#image': {
     top : '6dp',
     bottom: '6dp',
     left: '110dp',
@@ -67,10 +72,10 @@ ScrollView: {
    contentWidth: Ti.UI.SIZE,
    borderColor: 'black'
 },
-'.visible' : {
+'.visible': {
 	opacity: 1,	
 }
-'.not-visible' : {
+'.not-visible': {
 	opacity: 0,	
 	top : '500dp'
 }
@@ -165,3 +170,19 @@ TextField: {
 		fontWeight: 'bold'
 	}
 },
+"Button": {
+	top: '6dp',
+	width: '260dp',
+	height: '36dp',
+	borderRadius: '4dp',
+	borderColor: 'black',
+	backgroundColor: 'yellow',
+	font:{
+		fontSize: '13dp',
+		color: 'red'
+	}
+},
+"TableView":{
+	backgroundColor: 'red',
+	borderColor: 'black',
+}

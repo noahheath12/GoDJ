@@ -119,6 +119,49 @@ exports.definition = {
 			}
 			return deferred.promise;
 		}
+	
+		function updateAccount(_userInfo, _callback) {
+			var cloud = this.config.Cloud;
+			var TAP = Ti.App.Properties;
+
+			var deferred = Q.defer();
+
+			// bad data so return to caller
+			if (!_userInfo) {
+				_callback && _callback({
+					success : false,
+					model : null
+				});
+			} else {
+				cloud.Users.update(_userInfo, function(e) {
+					if (e.success) {
+						var user = e.users[0];
+						alert("Account Updated");
+						// set this for ACS to track session connected
+						// callback with newly created user
+						var newModel = new model(user);
+						_callback && _callback({
+							success : true,
+							model : newModel
+						});
+
+						deferred.resolve(newModel);
+					} else {
+						Ti.API.error(e);
+						_callback && _callback({
+							success : false,
+							model : null,
+							error : e
+						});
+
+						deferred.reject(e);
+					}
+				});
+
+			}
+			return deferred.promise;
+		}
+
 
 		/**
 		 *
@@ -181,6 +224,7 @@ exports.definition = {
 			getCurrentLocation : require('utilities').getCurrentLocation,
 			reverseGeocoder : require('utilities').reverseGeocoder,
 			createAccount : createAccount,
+			updateAccount : updateAccount
 		});
 		// end extend
 

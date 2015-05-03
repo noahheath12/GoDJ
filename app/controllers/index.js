@@ -59,40 +59,93 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 	var aEvent = Alloy.createModel("Event", params);
 	aEvent.createEvent(params).then(function(_model){
 	});
-	
 });
 
-$.descriptionText.text= "My name is DJ 40/40 and I am a college DJ located on Howard University's campus";
+var hint = "Type your profile description here";
+hintText(hint);
+$.descriptionArea.addEventListener('focus', function(e) {
+if ($.descriptionArea.value == hint){
+       $.descriptionArea.setValue("");
+       $.descriptionArea.setColor("#000");
+    }
+});
+ 
+ 
+$.descriptionArea.addEventListener('blur', function(e) {
+    hintText(hint);
+});
+ 
+function hintText(hint) {   
+    if ($.descriptionArea.value.length == 0) {
+    // set the color to lighter color
+    $.descriptionArea.setColor("#ccc");
+        $.descriptionArea.setValue(hint);
+    }
+}
+
 
 OS_IOS && $.cameraButton.addEventListener("click", function(_event){
 	$.cameraButtonClicked(_event);
 });
-
+var media; 
 //When the camera button is clicked, call photoSource
 $.cameraButtonClicked= function(_event){
-	var photoSource = Titanium.Media.showCamera;
+	var opts = {
+      cancel: 2,
+      options: ['Take Photo', 'Choose from gallery', 'Cancel'],
+      destructive: 0,
+      title: 'Choose'
+    };
+
+    var dialog = Ti.UI.createOptionDialog(opts);
 	
-	photoSource ({
-	success: function(event) {
-		//call to function to process an image from the photo gallery
-		processImage(event.media);
-		
-	},
-	cancel: function() {
-		//called when user cancels taking a picture
-	},
-	error: function(error) {
-		if(error.code == Titanium.Media.NO_CAMERA){
-			alert("Please run this test on device");
-		}else{
-			alert("Unexpected error: " + error.code);
+	dialog.addEventListener("click", function(event){
+		if(event.index == 0){
+			Titanium.Media.showCamera({
+				success: function(photoEvent) {
+				//call to function to process an image from the photo gallery
+					media = photoEvent.media;
+					$.image.image = photoEvent.media;
+					alert("Must press update button to save profile image");
+				},
+				cancel: function() {
+				//called when user cancels taking a picture
+				},
+				error: function(error) {
+					if(error.code == Titanium.Media.NO_CAMERA){
+						alert("Please run this test on device");
+					}else{
+						alert("Unexpected error: " + error.code);
+					}
+				},
+				//do not save to photo gallery. camera currently does not open
+				saveToPhotoGallery: true,
+				allowEditing : true,
+				mediaType: [Ti.Media.MEDIA_TYPE_PHOTO]
+			});
 		}
-	},
-	//do not save to photo gallery. camera currently does not open
-	saveToPhotoGallery: true,
-	allowEditing : true,
-	mediaType: [Ti.Media.MEDIA_TYPE_PHOTO]
-});
+		else if(event.index == 1){
+			Titanium.Media.openPhotoGallery({
+				success: function(photoEvent) {
+				//call to function to process an image from the photo gallery
+					media = photoEvent.media;
+					$.image.image = photoEvent.media;
+					alert("Must press update button to save profile image");
+				},
+				cancel: function() {
+				//called when user cancels taking a picture
+				},
+				error: function(error) {
+						alert("Unexpected error: " + error.code);
+				},
+				//do not save to photo gallery. camera currently does not open
+				allowEditing : true,
+				mediaType: [Ti.Media.MEDIA_TYPE_PHOTO]
+			});
+		}
+	});
+	dialog.show();
+};
 
 function processImage(_mediaObject){
   $.currentUserCustomPhoto = _mediaObject;
@@ -107,9 +160,6 @@ function processImage(_mediaObject){
   var aPhoto = Alloy.createModel('Photo', params);
   aPhoto.save();
 }
-};
-
-
 
 // check if there is a user session saved already
 var aUser = Alloy.createModel('User');
@@ -191,13 +241,31 @@ function doLogout() {
 	}
 }
 
+function updateProfile(){
+	var Cloud = require('ti.cloud');
+	if(media == [Ti.Media.MEDIA_TYPE_PHOTO]){
+		processImage(media);
+	}
+	var param = {
+		custom_fields: {
+			"description": $.descriptionArea.value
+			}
+	};
+	aUser.updateAccount(param).then(function(model){
+		$.descriptionText.text = model.attributes.custom_fields.description;	
+	});
+	
+}
+
 function loadProfileInformation() {
    var photoId;
    var Cloud = require('ti.cloud');
    var myPhoto = Alloy.createModel('Photo');
    var userID = Alloy.Globals.CURRENT_USER.attributes.id;
    var profile = Alloy.Globals.CURRENT_USER.attributes.username;
+   var text = Alloy.Globals.CURRENT_USER.attributes.custom_fields.description;
    $.profileName.text = profile.toUpperCase();
+   $.descriptionText.text = text;
    console.log(userID);
    var param = {
    		where: {
@@ -223,8 +291,6 @@ function loadProfileInformation() {
    		
   });
    
-   
-  // get the attributes from the current use
 }
 
 $.getView().addEventListener("focus", function() {

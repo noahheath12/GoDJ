@@ -3,7 +3,7 @@
 		<Tab id="tabProfile" title="Profile">
 			<Window class='container' title='Profile'>
 				<RightNavButton platform="ios">
-					<Button id="cameraButton">Camera</Button>
+					<Button id="settingsButton">Settings</Button>
 				</RightNavButton>
 				<LeftNavButton>
 					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
@@ -23,17 +23,7 @@
             				<TableView id='reviewsTable'></TableView>
             			</View>
             		</View>
-            		<View id='settingsView' class='inputView not-visible' top='500dp'>
-					<Label id='Settings'></Label>
-						<View id="cavContainer" >
-							<TextField id="event_name" class='tfWrapper' />
-							<TextField id="event_details" class='tfWrapper' />
-							<View class="centerHelper" >
-								<Button id="doCreateEventBtn" title="Create Event"/>
-								<Button id="doCancelBtn" title="Cancel"/>
-							</View>
-						</View>
-					</View>
+            		
 				</ScrollView>
 			</Window>
 		</Tab>
@@ -61,5 +51,19 @@
 				</ScrollView>
 			</Window>
 		</Tab>	
+		<Tab id='tabSettings' title='Settings'>
+			<Window id='settingsWindow'class='container' title='Settings'>
+				<ScrollView>
+					<View id='settingsView' class='inputView visible'>
+						<View id="cavContainer" >
+								<Button id="cameraButton" title="Change Profile Photo"/>
+								<TextArea id="descriptionArea" class='tfWrapper'></TextArea>
+								<Button id="doUpdateAccount" title="Update Account" onClick="updateProfile"/>
+								
+						</View>	
+					</View>
+				</ScrollView>
+			</Window>
+		</Tab>
 	</TabGroup>
 </Alloy>

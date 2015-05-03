@@ -67,6 +67,9 @@ function handleCreateAccountClick() {
 		email : $.acct_email.value,
 		password : $.acct_password.value,
 		password_confirmation : $.acct_password_confirmation.value,
+		custom_fields : '{
+			"description": "Go to settings to enter a description."
+		}'
 	};
 	
 	var user = Alloy.createModel('User');
