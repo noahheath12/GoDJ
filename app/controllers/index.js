@@ -57,8 +57,7 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 		user: Alloy.Globals.CURRENT_USER
 	};
 	var aEvent = Alloy.createModel("Event", params);
-	aEvent.createEvent(params).then(function(_model){
-	});
+	aEvent.createEvent(params);
 });
 
 var hint = "Type your profile description here";
@@ -288,11 +287,9 @@ function loadProfileInformation() {
    				$.image.image = _model.attributes.urls.thumb_100;
    			});
    		}
-   		
   });
-   
+  
 }
-
 $.getView().addEventListener("focus", function() {
   setTimeout(function() {
     !$.initialized && loadProfileInformation();
