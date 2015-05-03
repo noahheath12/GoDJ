@@ -1,10 +1,15 @@
-Welcome to your Appcelerator Titanium Mobile Project
+The name of this application is GoDJ. 
 
-This is a blank project.  Start by editing your application's app.js to 
-make your first mobile project using Titanium.
+GoDJ is an application that allows DJ's to create a profile, add events, add links to their music, and more. 
 
+Current Functionality: 
+	Currently the app allows a person to create a profile. 
+	From there they can update information about their profile.
+	They can also create an event. 
+	Functionality in progress is querying a created event and displaying it in a view. 
+	I can grab the created event, but have not succeeded in displaying it to a user. 
 
-
+GoDJ is built using Appcelerator Titanium Studio
 ----------------------------------
 Stuff our legal folk make us say:
 

@@ -3,7 +3,7 @@
 		<Tab id="tabProfile" title="Profile">
 			<Window class='container' title='Profile'>
 				<RightNavButton platform="ios">
-					<Button id="settingsButton">Settings</Button>
+					<Button id="refeshButton" onClick="loadProfileInformation">Refresh</Button>
 				</RightNavButton>
 				<LeftNavButton>
 					<Button id='logoutBtn' onClick="doLogout" top="50dp">Logout</Button>
