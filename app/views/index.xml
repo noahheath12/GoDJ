@@ -39,7 +39,7 @@
 				<TableView id="myEvents"></TableView>
 				<View id='createEventView' class='inputView not-visible' top='500dp'>
 					<Label id='eventText'></Label>
-					<View id="cavContainer" >
+					<View id="cavContainer" class='inputView' >
 						<TextField id="event_name" class='tfWrapper' />
 						<TextField id="event_details" class='tfWrapper' />
 						<View class="centerHelper" >

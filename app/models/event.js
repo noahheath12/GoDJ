@@ -32,8 +32,35 @@ exports.definition = {
 				});
 			return deferred.promise;
 		}
+		
+		function getEvents(_eventInfo){
+			var cloud = this.config.Cloud;
+			var deferred = Q.defer();
+			
+			cloud.Events.search(_eventInfo, function(e) {
+					if (e.success) {
+						alert('Success:\n' +
+           				'Count: ' + e.events.length);
+        				for (var i = 0; i < e.events.length; i++) {
+           					var event = e.events[i];
+           					alert('id: ' + event.id + '\n' +
+                  			'name: ' + event.name + '\n' +
+                  			'longitude: ' + event.longitude + '\n' +
+                  			'latitude: ' + event.latitude + '\n' +
+                  			'updated_at: ' + event.updated_at);
+                  			var newModel = new model(event);
+							deferred.resolve(newModel);
+        				}
+					} else {
+						deferred.reject(e);
+					}
+			});
+			
+			
+		}
 		_.extend(Model.prototype, {
-			createEvent: createEvent
+			createEvent: createEvent,
+			getEvents: getEvents
 		});
 		return Model;
 	},

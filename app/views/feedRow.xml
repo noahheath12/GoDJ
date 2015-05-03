@@ -1,0 +1,7 @@
+<Alloy>
+	<TableViewRow class="row">
+		<View class="container">
+			<Label id="eventLabel"></Label>
+		</View>
+	</TableViewRow>
+</Alloy>

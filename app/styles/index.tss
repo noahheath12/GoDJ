@@ -114,9 +114,6 @@ ScrollView: {
 '#event_details': {
 	hintText: 'Describe the Event...'
 },
-'#doCancelBtn': {
-	left: '10dp'
-},
 '#doLoginBtn': {
 	left: '0dp'
 },

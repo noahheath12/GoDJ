@@ -57,8 +57,51 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 		user: Alloy.Globals.CURRENT_USER
 	};
 	var aEvent = Alloy.createModel("Event", params);
-	aEvent.createEvent(params);
+	aEvent.save({}, {
+		success: function(_model, _respone){
+			Ti.API.info('success: ' + _model.toJSON());
+			_callback({
+				model: _model,
+				message: null,
+				success: true
+			});
+		},
+		error: function(e) {
+			Ti.API.error('error: ' + e.message);
+			_callback({
+				model: params,
+				message: e.message,
+				success: false
+			});
+		}
+	});
+	
 });
+
+function loadEvents(ID){
+	var rows = [];
+	
+	var events = Alloy.Collections.event || Alloy.Collections.instance("Event");
+	events.fetch({
+		data: {
+			order: '-created_at',
+			where: {
+				user_id : ID
+			}
+		}, 
+		success: function(model, response){
+			events.each(function(event){
+				var eventRow = Alloy.createController("feedRow", event);
+				rows.push(eventRow.getView());
+			});
+			$.myEvents.data = rows;
+		},
+		error: function(error) {
+			alert('Error loading Feed ' + e.message);
+			Ti.API.error(JSON.stringify(error));
+		}
+	});
+}
 
 var hint = "Type your profile description here";
 hintText(hint);
@@ -265,14 +308,18 @@ function loadProfileInformation() {
    var text = Alloy.Globals.CURRENT_USER.attributes.custom_fields.description;
    $.profileName.text = profile.toUpperCase();
    $.descriptionText.text = text;
-   console.log(userID);
    var param = {
    		where: {
    				'user_id': userID	
    		},
    		order: "-created_at",
    };
-  
+   
+   var params = {
+   		user_id: userID
+   };
+   
+   loadEvents(userID);
   
    myPhoto.getPhoto(param).then(function(model){
    		photoId = model.attributes.id;
