@@ -54,7 +54,7 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 		name: $.event_name.value,
 		start_time: currentTime,
 		duration: 7200,
-		user: Alloy.Globals.CURRENT_USER
+		user: Alloy.Globals.CURRENT_USER,
 	};
 	var aEvent = Alloy.createModel("Event", params);
 	aEvent.save({}, {
@@ -67,16 +67,11 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 			});
 		},
 		error: function(e) {
-			Ti.API.error('error: ' + e.message);
-			_callback({
-				model: params,
-				message: e.message,
-				success: false
-			});
+			alert("Must enter an event name");
 		}
 	});
-	
 });
+
 
 function loadEvents(ID){
 	var rows = [];
