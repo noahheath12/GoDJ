@@ -60,11 +60,6 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 	aEvent.save({}, {
 		success: function(_model, _respone){
 			Ti.API.info('success: ' + _model.toJSON());
-			_callback({
-				model: _model,
-				message: null,
-				success: true
-			});
 		},
 		error: function(e) {
 			alert("Must enter an event name");
