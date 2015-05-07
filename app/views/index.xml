@@ -1,4 +1,5 @@
 <Alloy>
+	<Collection src="user" instance="true" id="friendUserCollection"/>
 	<TabGroup id='tabGroup'>
 		<Tab id="tabProfile" title="Profile">
 			<Window class='container' title='Profile'>
@@ -41,16 +42,35 @@
 					<Label id='eventText'></Label>
 					<View id="cavContainer" class='inputView' >
 						<TextField id="event_name" class='tfWrapper' />
-						<TextField id="event_details" class='tfWrapper' />
+						<TextField id="eventDetailsArea" class='tfWrapper'/>
+						<TextField id="event_address" class='tfWrapper'/>
+						<Picker id="datePicker" type="Ti.UI.PICKER_TYPE_DATE_AND_TIME"></Picker>
 						<View class="centerHelper" >
-							<Button id="doCreateEventBtn" title="Create Event"/>
-							<Button id="doCancelBtn" title="Cancel"/>
+							<Button id="doCreateEventBtn" class="eventButtons" title="Create Event"/>
+							<Button id="doCancelBtn" class="eventButtons" title="Cancel"/>
 						</View>
 					</View>
 				</View>
 				</ScrollView>
 			</Window>
 		</Tab>	
+		<Tab title="DJ's">
+		<Window title="DJ's" class='container'>
+			<ScrollView>
+				<TableView id="appUsers"></TableView>
+				<View id='createReviewView' class='inputView not-visible' top='500dp'>
+					<Label id='reviewText' text="Review This DJ"></Label>
+					<View id="cavContainer" class='inputView' >
+						<TextArea id="reviewArea" class="tfWrapper"></TextArea>
+						<View class="centerHelper" >
+							<Button id="doCreateReviewBtn" title="Create Review"/>
+							<Button id="cancelBtn" title="Cancel"/>
+						</View>
+					</View>
+				</View>
+			</ScrollView>
+		</Window>
+	</Tab>
 		<Tab id='tabSettings' title='Settings'>
 			<Window id='settingsWindow'class='container' title='Settings'>
 				<ScrollView>

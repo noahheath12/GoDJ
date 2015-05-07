@@ -1,0 +1,12 @@
+".container" : {
+  layout: 'vertical',
+  height: '80dp',
+},
+'#commentLabel':{
+	top:'10dp',
+	textAlign : 'center',
+	font:{
+		fontSize: '24dp',
+		fontWeight: 'bold'
+	}
+},

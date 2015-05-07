@@ -7,6 +7,7 @@ var callback = args.callback;
 $.appImage.image = '/turntable.png';
 
 
+
 function handleLoginClick(_event) {
 
 	Ti.API.debug('clicked: ' + _event.source.id);
@@ -52,6 +53,65 @@ function handleShowAcctClick(_event) {
 	});
 }
 
+OS_IOS && $.addProfilePhoto.addEventListener("click", function(_event){
+	$.profileButtonClicked(_event);
+});
+var media;
+
+$.profileButtonClicked= function(_event){
+	var opts = {
+      cancel: 2,
+      options: ['Take Photo', 'Choose from gallery', 'Cancel'],
+      destructive: 0,
+      title: 'Choose'
+    };
+
+    var dialog = Ti.UI.createOptionDialog(opts);
+	
+	dialog.addEventListener("click", function(event){
+		if(event.index == 0){
+			Titanium.Media.showCamera({
+				success: function(photoEvent) {
+				//call to function to process an image from the photo gallery
+					media = photoEvent.media;
+				},
+				cancel: function() {
+				//called when user cancels taking a picture
+				},
+				error: function(error) {
+					if(error.code == Titanium.Media.NO_CAMERA){
+						alert("Please run this test on device");
+					}else{
+						alert("Unexpected error: " + error.code);
+					}
+				},
+				//do not save to photo gallery. camera currently does not open
+				saveToPhotoGallery: true,
+				allowEditing : true,
+				mediaType: [Ti.Media.MEDIA_TYPE_PHOTO]
+			});
+		}
+		else if(event.index == 1){
+			Titanium.Media.openPhotoGallery({
+				success: function(photoEvent) {
+				//call to function to process an image from the photo gallery
+					media = photoEvent.media;
+				},
+				cancel: function() {
+				//called when user cancels taking a picture
+				},
+				error: function(error) {
+						alert("Unexpected error: " + error.code);
+				},
+				//do not save to photo gallery. camera currently does not open
+				allowEditing : true,
+				mediaType: [Ti.Media.MEDIA_TYPE_PHOTO]
+			});
+		}
+	});
+	dialog.show();
+};
+
 /**
  *
  */
@@ -67,6 +127,7 @@ function handleCreateAccountClick() {
 		email : $.acct_email.value,
 		password : $.acct_password.value,
 		password_confirmation : $.acct_password_confirmation.value,
+		photo: media,
 		custom_fields : '{
 			"description": "Go to settings to enter a description."
 		}'
@@ -113,3 +174,4 @@ function handleShowLoginClick(_event) {
 		});
 	});
 }
+

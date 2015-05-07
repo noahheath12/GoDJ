@@ -10,6 +10,9 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
+Alloy.Globals.PW = require('progressWindow');
+Alloy.Globals.FACEBOOK = require('facebook');
+
 Alloy.C = function(name, modelDesc, model) {
 	var extendObj = {
 		model : model

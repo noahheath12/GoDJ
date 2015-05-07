@@ -2,6 +2,7 @@
     layout : 'horizontal',  
     width : Ti.UI.FILL,
     height : Titanium.UI.SIZE,
+    backgroundColor: 'red'
 },
 '#tabGroup':{
 	tabsBackgroundColor:'yellow',
@@ -111,14 +112,19 @@ ScrollView: {
 '#event_name': {
 	hintText: 'Name of Event'
 },
-'#event_details': {
-	hintText: 'Describe the Event...'
+'#eventDetailsArea': {
+	hintText: 'Event Description'
 },
+'#event_address':{
+	hintText: "Type your event address here"
+}
 '#doLoginBtn': {
 	left: '0dp'
 },
-'#doCreateEventBtn': {
-	left: '0dp'
+'.eventButtons': {
+	right: '3.5dp',
+	left: '0dp',
+	width: '265dp'
 },
 '#doShowCreateAccountBtn': {
 	left: '0dp'
@@ -182,4 +188,59 @@ TextField: {
 "TableView":{
 	backgroundColor: 'red',
 	borderColor: 'black',
+},
+"#datePicker":{
+	backgroundColor: 'transparent',
+	maxDate:"December 31, 2020 12:00:00",
+	minDate:"January 1, 2010 12:00:00",
+	width: '260dp',
+	right: '15dp',
+	top: '20dp'
+},
+'.container':{
+	backgroundColor: 'red'
+},
+'#friendsWindow':{
+	layout: 'vertical'
+},
+'#filterContainer':{
+	layout: 'vertical'
+},
+'#filter[platform=ios]':{
+	style: Titanium.UI.iPhone.SystemButtonStyle.BAR,
+	height: 30,
+	width: '100%'
+},
+"#listView":{
+	backgroundColor: 'red',
+	separatorColor: '#CCC',
+	width: Ti.UI.FILL,
+	height: Titanium.UI.FILL
+},
+'#userName':{
+	left: "8dp",
+	height: Ti.UI.SIZE,
+	width: Titanium.UI.SIZE,
+	font: {
+		fontSize: '15dp'
+	}
+},
+'#userView':{
+	top: "2dp",
+	left: "4dp",
+	backgroundColor: 'red',
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	layout: 'horizontal'
+},
+'.actionBtn[platform=ios]':{
+	right: '8dp',
+	width: '90dp',
+	height: '26dp',
+	font: {
+		fontSize: '14dp'
+	}	
+}
+'#section':{
+	backgroundColor: 'red'
 }

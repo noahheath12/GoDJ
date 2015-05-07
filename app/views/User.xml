@@ -1,6 +1,5 @@
 <Alloy>
 	<Window class="container">
-		<ScrollView>
 			<View id='loginAcctView'  class='inputView visible'>
 				<Label id='accountText'></Label>
 				<ImageView id='appImage'></ImageView>
@@ -22,12 +21,12 @@
 					<TextField id="acct_password" class='tfWrapper' />
 					<TextField id="acct_password_confirmation" class='tfWrapper'/>
 					<TextField id="acct_username" class='tfWrapper'/>
+					<Button id="addProfilePhoto" title='Add Profile Photo'></Button>
 					<View class="centerHelper" >
 						<Button id="doCreateAccountBtn" title="Create Account" onClick="handleCreateAccountClick"/>
 						<Button id="doCancelBtn" title="Cancel" onClick="handleShowLoginClick"/>
 					</View>
 				</View>
 			</View>
-		</ScrollView>
 	</Window>
 </Alloy>

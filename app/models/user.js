@@ -59,6 +59,7 @@ exports.definition = {
 			});
 			return deferred.promise;
 		}
+		
 
 		/**
 		 *
@@ -92,7 +93,7 @@ exports.definition = {
 						var user = e.users[0];
 						TAP.setString("sessionId", e.meta.session_id);
 						TAP.setString("user", JSON.stringify(user));
-						alert("Account Created");
+						alert("Account Created. You May Need To Press Refresh to Load Your Profile Photo");
 						// set this for ACS to track session connected
 						cloud.sessionId = e.meta.session_id;
 
@@ -212,7 +213,7 @@ exports.definition = {
 				return false;
 			}
 		}
-
+		
 
 		_.extend(Model.prototype, {
 			login : login,
@@ -224,7 +225,8 @@ exports.definition = {
 			getCurrentLocation : require('utilities').getCurrentLocation,
 			reverseGeocoder : require('utilities').reverseGeocoder,
 			createAccount : createAccount,
-			updateAccount : updateAccount
+			updateAccount : updateAccount,
+			
 		});
 		// end extend
 

@@ -1,0 +1,11 @@
+<Alloy>
+	<TableViewRow id="userRow" class="row" customProperty="myData">
+		<View class="container">
+			<View id="cavContainer" class='inputView' >
+				<Label id="userLabel"></Label>
+				<Label id="myDataID"></Label>
+         		<Button id="reviewButton">Review This DJ</Button>
+         	</View>
+		</View>
+	</TableViewRow>
+</Alloy>

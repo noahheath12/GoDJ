@@ -48,13 +48,15 @@ $.doCancelBtn.addEventListener("click", function(_event) {
 });
 
 $.doCreateEventBtn.addEventListener("click", function(_event){
-	var currentTime = new Date();
-	
 	var params = {
 		name: $.event_name.value,
-		start_time: currentTime,
+		start_time: $.datePicker.value,
 		duration: 7200,
 		user: Alloy.Globals.CURRENT_USER,
+		custom_fields: {
+			address: $.event_address.value,
+			description: $.eventDetailsArea.value
+		}
 	};
 	var aEvent = Alloy.createModel("Event", params);
 	aEvent.save({}, {
@@ -65,8 +67,8 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 			alert("Must enter an event name");
 		}
 	});
+	loadEvents(Alloy.Globals.CURRENT_USER.attributes.id);
 });
-
 
 function loadEvents(ID){
 	var rows = [];
@@ -93,6 +95,52 @@ function loadEvents(ID){
 	});
 }
 
+function loadReviews(ID){
+	var rows = [];
+	
+	var reviews = Alloy.Collections.review || Alloy.Collections.instance("Review");
+	
+	reviews.fetch({
+		data: {
+			order: '-created_at',
+		}, 
+		success: function(model, response){
+			reviews.each(function(event){
+				var commentRow = Alloy.createController("commentRow", event);
+				rows.push(commentRow.getView());
+			});
+			$.reviewsTable.data = rows;
+		},
+		error: function(error) {
+			alert('Error loading Feed ' + e.message);
+			Ti.API.error(JSON.stringify(error));
+		}
+	});
+}
+
+function loadUsers(ID){
+	var rows = [];
+	
+	var users = Alloy.Collections.user || Alloy.Collections.instance("User");
+	users.fetch({
+		data: {
+			order: '-created_at',
+		}, 
+		success: function(model, response){
+			users.each(function(event){
+				var userRow = Alloy.createController("userRow", event);
+				rows.push(userRow.getView());
+			});
+			$.appUsers.data = rows;
+		},
+		error: function(error) {
+			alert('Error loading Feed ' + e.message);
+			Ti.API.error(JSON.stringify(error));
+		}
+	});
+	
+}
+
 var hint = "Type your profile description here";
 hintText(hint);
 $.descriptionArea.addEventListener('focus', function(e) {
@@ -101,7 +149,6 @@ if ($.descriptionArea.value == hint){
        $.descriptionArea.setColor("#000");
     }
 });
- 
  
 $.descriptionArea.addEventListener('blur', function(e) {
     hintText(hint);
@@ -229,11 +276,11 @@ function userLoggedIn(_user) {
 
 	// added support for getting location from the user
 	// object since it seems like a helpful feature
-	_user.getCurrentLocation().then(function(_results) {
-		Ti.API.debug('_results ' + JSON.stringify(_results, null, 2));
-	}, function(_error) {
-		Ti.API.error('_error ' + JSON.stringify(_error));
-	});
+	//_user.getCurrentLocation().then(function(_results) {
+		//Ti.API.debug('_results ' + JSON.stringify(_results, null, 2));
+	//}, function(_error) {
+		//Ti.API.error('_error ' + JSON.stringify(_error));
+	//});
 	
 }
 /**
@@ -273,6 +320,7 @@ function doLogout() {
 	}
 }
 
+
 function updateProfile(){
 	var Cloud = require('ti.cloud');
 	if(media == [Ti.Media.MEDIA_TYPE_PHOTO]){
@@ -310,7 +358,9 @@ function loadProfileInformation() {
    };
    
    loadEvents(userID);
-  
+   loadUsers(userID);
+   loadReviews(userID);
+   
    myPhoto.getPhoto(param).then(function(model){
    		photoId = model.attributes.id;
    		console.log(JSON.stringify(model));
@@ -334,3 +384,67 @@ $.getView().addEventListener("focus", function() {
   }, 200);
 });
 
+$.appUsers.addEventListener("click", processTableClicks);
+var myData;
+function processTableClicks(_event) {
+  if (_event.source.id === "reviewButton") {
+  	myData = _event.row.customObject.userID;
+    handleCommentButtonClicked(_event);
+    console.log(myData);
+  } 
+}  
+function handleCommentButtonClicked(_event) {
+	var animation = require('alloy/animation');
+
+	// when move the create account screen into view
+	var moveToTop = Ti.UI.createAnimation({
+		top : '0dp',
+		duration : 1
+	});
+	$.createReviewView.animate(moveToTop, function() {
+
+		// now cross fade
+		animation.crossFade($.appUsers, $.createReviewView, 500, function() {
+			// when done animating, move the view off screen
+			var moveToBottom = Ti.UI.createAnimation({
+				top : '500dp',
+				duration : 1
+			});
+			$.appUsers.animate(moveToBottom);
+		});
+	});
+}
+
+$.cancelBtn.addEventListener("click", function(_event) {
+
+	Ti.API.debug('clicked: ' + _event.source.id);
+
+	var animation = require('alloy/animation');
+
+	// when move the login screen into view
+	var moveToTop = Ti.UI.createAnimation({
+		top : '0dp',
+		duration : 1
+	});
+	$.appUsers.animate(moveToTop, function() {
+
+		// now cross fade
+		animation.crossFade($.createReviewView, $.appUsers, 500, function() {
+			// when done animating, move the view off screen
+			var moveToBottom = Ti.UI.createAnimation({
+				top : '500dp',
+				duration : 1
+			});
+			$.createReviewView.animate(moveToBottom);
+		});
+	});
+});
+
+$.doCreateReviewBtn.addEventListener("click", function(_event){
+	var aReview = Alloy.createModel("Review");
+	var params = {
+		user_object_id: myData,
+		content: $.reviewArea.value
+	};
+	aReview.createReview(params);	
+});

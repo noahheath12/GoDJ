@@ -1,0 +1,23 @@
+".container" : {
+  layout: 'vertical',
+  height: '80dp',
+},
+'#userLabel':{
+	top:'10dp',
+	textAlign : 'center',
+	font:{
+		fontSize: '24dp',
+		fontWeight: 'bold'
+	}
+},
+"#reviewButton": {
+  top: '40dp',
+  width: '40%',
+  height: '30dp',
+  borderColor: 'black',
+  borderRadius: '2',
+  backgroundColor: 'yellow'
+},
+'#myDataID':{
+	
+}

@@ -1,0 +1,9 @@
+<Alloy>
+	<TableViewRow id="commentRow" class="row">
+		<View class="container">
+			<View id="cavContainer" class='inputView' >
+				<Label id="commentLabel"></Label>
+			</View>
+		</View>
+	</TableViewRow>
+</Alloy>

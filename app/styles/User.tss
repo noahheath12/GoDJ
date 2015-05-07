@@ -10,7 +10,7 @@
 	borderColor: 'gray'
 },
 "ImageView":{
-	top: '30dp'
+	top: '20dp'
 },
 '.centerHelper': {
 	top: '10dp',
@@ -37,11 +37,11 @@ TextField: {
 // Default Button Style
 "Button": {
 	top: '6dp',
-	width: '120dp',
+	width: '260dp',
 	height: '36dp',
 	borderRadius: '4dp',
 	borderColor: 'black',
-	right: '15dp',
+	right: '12dp',
 	backgroundColor: 'red',
 	font:{
 		fontSize: '13dp'
@@ -66,7 +66,7 @@ ScrollView: {
 	backgroundColor: 'transparent'
 },
 '#accountText':{
-	top: '50dp',
+	top: '30dp',
 	width : '80%',
 	textAlign : 'center',
 	text: "GoDJ",
@@ -76,7 +76,7 @@ ScrollView: {
 	}
 },
 '#createText':{
-	top: '50dp',
+	top: '30dp',
 	width : '80%',
 	textAlign : 'center',
 	text: "Create Account",
@@ -93,7 +93,7 @@ ScrollView: {
 	hintText: 'password'
 },
 '#cavContainer': {
-	top: '50dp',
+	top: '30dp',
 	left: '10dp',
 	width: '280dp',
 	height: Ti.UI.SIZE,
@@ -131,3 +131,7 @@ ScrollView: {
 '#doShowCreateAccountBtn': {
 	left: '0dp'
 }
+'#addProfilePhoto':{
+	left: '5dp',
+	width: '260dp'
+},

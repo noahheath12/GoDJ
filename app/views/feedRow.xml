@@ -1,7 +1,12 @@
 <Alloy>
-	<TableViewRow class="row">
+	<TableViewRow id="eventRow" class="row">
 		<View class="container">
-			<Label id="eventLabel"></Label>
+			<View id="cavContainer" class='inputView' >
+				<Label id="eventLabel"></Label>
+				<Label id="eventTimeLabel"></Label>
+				<Label id="eventAddressLabel"></Label>
+				<Label id="eventDescription"></Label>
+			</View>
 		</View>
 	</TableViewRow>
 </Alloy>

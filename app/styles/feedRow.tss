@@ -1,15 +1,23 @@
 
 ".container" : {
   layout: 'vertical',
-  width: '80%',
-  height: '100dp',
+  height: '120dp',
 },
 '#eventLabel':{
-	top:'40dp',
-	width: '80%',
+	top:'10dp',
 	textAlign : 'center',
 	font:{
 		fontSize: '24dp',
 		fontWeight: 'bold'
 	}
+}
+'#eventTimeLabel':{
+	top: '40dp',
+	textAlign : 'center',
+},
+'#eventAddressLabel':{
+	top: '60dp'
+},
+'#eventDescription':{
+	top: '80dp'
 }
