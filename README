@@ -1,13 +1,16 @@
 The name of this application is GoDJ. 
 
 GoDJ is an application that allows DJ's to create a profile, add events, add links to their music, and more. 
+The purpose of GoDJ is for DJ's to be able to market themselves to those looking for their services. 
+Currently, many DJ's have a hard time to entering the industry. If you don't already have a heavy following, it's hard
+to gain traction and it's rare that you are booked unless you sell yourself short. GODJ will create an opportunity for consumers to 
+search for a DJ, listen to their mixes, and read reviews for that DJ.
 
-Current Functionality: 
-	Currently the app allows a person to create a profile. 
-	From there they can update information about their profile.
-	They can also create an event. 
-	Functionality in progress is querying a created event and displaying it in a view. 
-	I can grab the created event, but have not succeeded in displaying it to a user. 
+Current Functionality:
+	Create a profile for a user. Upload profile photo and description of the user. 
+	Upload events along with date, start-time, and description.
+	Query a list of users who use the app. 
+	Create a review for a user and display it on that user's profile. 
 
 GoDJ is built using Appcelerator Titanium Studio
 ----------------------------------

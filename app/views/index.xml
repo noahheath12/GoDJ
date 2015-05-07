@@ -47,7 +47,7 @@
 						<Picker id="datePicker" type="Ti.UI.PICKER_TYPE_DATE_AND_TIME"></Picker>
 						<View class="centerHelper" >
 							<Button id="doCreateEventBtn" class="eventButtons" title="Create Event"/>
-							<Button id="doCancelBtn" class="eventButtons" title="Cancel"/>
+							<Button id="doCancelBtn" class="eventButtons" title="Cancel" onClick="closeCreateEventsPage"/>
 						</View>
 					</View>
 				</View>

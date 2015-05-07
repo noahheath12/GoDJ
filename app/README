@@ -1,3 +1,20 @@
+The name of this application is GoDJ. 
+
+GoDJ is an application that allows DJ's to create a profile, add events, add links to their music, and more. 
+The purpose of GoDJ is for DJ's to be able to market themselves to those looking for their services. 
+Currently, many DJ's have a hard time to entering the industry. If you don't already have a heavy following, it's hard
+to gain traction and it's rare that you are booked unless you sell yourself short. GODJ will create an opportunity for consumers to 
+search for a DJ, listen to their mixes, and read reviews for that DJ.
+
+Current Functionality:
+	Create a profile for a user. Upload profile photo and description of the user. 
+	Upload events along with date, start-time, and description.
+	Query a list of users who use the app. 
+	Create a review for a user and display it on that user's profile. 
+	
+Titanium was built using Titanium Studio with Alloy and Appcelerator Cloud Services
+
+
 Welcome to Alloy. Prepare to be amazed.
 =======================================
 

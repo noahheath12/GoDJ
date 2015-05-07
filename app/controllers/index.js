@@ -22,9 +22,7 @@ OS_IOS && $.addEventsButton.addEventListener("click", function(_event){
 	});
 });
 
-$.doCancelBtn.addEventListener("click", function(_event) {
-
-	Ti.API.debug('clicked: ' + _event.source.id);
+function closeCreateEventsPage(){
 
 	var animation = require('alloy/animation');
 
@@ -45,7 +43,9 @@ $.doCancelBtn.addEventListener("click", function(_event) {
 			$.createEventView.animate(moveToBottom);
 		});
 	});
-});
+}
+
+
 
 $.doCreateEventBtn.addEventListener("click", function(_event){
 	var params = {
@@ -68,6 +68,8 @@ $.doCreateEventBtn.addEventListener("click", function(_event){
 		}
 	});
 	loadEvents(Alloy.Globals.CURRENT_USER.attributes.id);
+	closeCreateEventsPage();
+	
 });
 
 function loadEvents(ID){
@@ -103,6 +105,7 @@ function loadReviews(ID){
 	reviews.fetch({
 		data: {
 			order: '-created_at',
+			user_id: ID
 		}, 
 		success: function(model, response){
 			reviews.each(function(event){
@@ -334,7 +337,7 @@ function updateProfile(){
 	aUser.updateAccount(param).then(function(model){
 		$.descriptionText.text = model.attributes.custom_fields.description;	
 	});
-	
+	loadProfileInformation();
 }
 
 function loadProfileInformation() {
@@ -382,6 +385,7 @@ $.getView().addEventListener("focus", function() {
     !$.initialized && loadProfileInformation();
     $.initialized = true;
   }, 200);
+  loadProfileInformation();
 });
 
 $.appUsers.addEventListener("click", processTableClicks);
@@ -440,11 +444,36 @@ $.cancelBtn.addEventListener("click", function(_event) {
 	});
 });
 
+function closeCreateReviewsPage(){
+
+	var animation = require('alloy/animation');
+
+	// when move the login screen into view
+	var moveToTop = Ti.UI.createAnimation({
+		top : '0dp',
+		duration : 1
+	});
+	$.appUsers.animate(moveToTop, function() {
+
+		// now cross fade
+		animation.crossFade($.createReviewView, $.appUsers, 500, function() {
+			// when done animating, move the view off screen
+			var moveToBottom = Ti.UI.createAnimation({
+				top : '500dp',
+				duration : 1
+			});
+			$.createReviewView.animate(moveToBottom);
+		});
+	});
+}
+
 $.doCreateReviewBtn.addEventListener("click", function(_event){
 	var aReview = Alloy.createModel("Review");
 	var params = {
 		user_object_id: myData,
-		content: $.reviewArea.value
+		content: $.reviewArea.value,
+		allow_duplicate: true
 	};
 	aReview.createReview(params);	
+	closeCreateReviewsPage();
 });
