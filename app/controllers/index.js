@@ -385,7 +385,6 @@ $.getView().addEventListener("focus", function() {
     !$.initialized && loadProfileInformation();
     $.initialized = true;
   }, 200);
-  loadProfileInformation();
 });
 
 $.appUsers.addEventListener("click", processTableClicks);
